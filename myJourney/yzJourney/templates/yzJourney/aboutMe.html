@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About Me</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+    <!-- Header -->
+    <header class="bg-green-500 text-white p-4 text-center">
+        <h1 class="text-3xl font-bold">About Me</h1>
+        <div class="about-card" style="margin-top: 15px; display: inline-block;">
+            <a href="{% url 'index' %}" style="text-decoration: none; color: inherit;">
+        <p style="font-weight: bold; text-align: center;">Learning Journey</p>
+    </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="p-6 max-w-xl mx-auto space-y-4">
+        <!-- About Me Card -->
+        {% if abouts %}
+        {% for about in abouts %}
+        <div class="bg-white p-4 shadow rounded">
+            <p><strong>Name:</strong> {{ about.name }}</p>
+            <p><strong>Age:</strong> {{ about.age }}</p>
+            <p class="mt-2"><strong>Bio:</strong> {{ about.bio }}</p>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-center text-gray-600">No profile information available. Add it in the admin panel!</p>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center p-4 mt-6 bg-gray-200">
+        &copy; 2025 My Learning Journey
+    </footer>
+</body>
+
+</html>

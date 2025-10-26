@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Learning Journey</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <h1>My Learning Journey</h1>
+        <!-- About Me Card inside Header -->
+        <div class="about-card" style="margin-top: 15px; display: inline-block;">
+            <a href="{% url 'about_me' %}" style="text-decoration: none; color: inherit;">
+        <p style="font-weight: bold; text-align: center;">About Me</p>
+    </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Learning Journey Table -->
+        {% if journeys %}
+        <table class="journey-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for journey in journeys %}
+                <tr>
+                    <td>{{ journey.title }}</td>
+                    <td>{{ journey.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-journeys">No learning journey entries yet. Check admin to add some!</p>
+        {% endif %}
+
+        <!-- Admin Screenshot -->
+        <h2 class="admin-heading">Admin Screenshot</h2>
+        <img src="{% static 'images/admin_screenshot.jpeg' %}" alt="Admin Screenshot" class="admin-screenshot">
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 My Learning Journey
+    </footer>
+
+</body>
+
+</html>
